@@ -8,32 +8,27 @@ class MiApp(QMainWindow):
         self.ui = QUiLoader().load("interfaz.ui", None)
         self.ui.show()
         
-        # Conectamos con TUS nombres de botones
         self.ui.calcular.clicked.connect(self.realizar_calculo)
         self.ui.predecir.clicked.connect(self.predecir_nota)
 
     def hay_formula_seleccionada(self):
-        # CORREGIDO: Buscamos "formula1", "formula2", "formula3"
         if self.ui.formula1.isChecked() or self.ui.formula2.isChecked() or self.ui.formula3.isChecked():
             return True
         return False
 
     def realizar_calculo(self):
-        # 1. Portero (Usando la función corregida)
         if not self.hay_formula_seleccionada():
             self.ui.resultado.setText("¡ERROR: Selecciona un formato!")
             self.ui.resultado.setStyleSheet("color: purple; font-weight: bold;")
             return
 
         try:
-            # CORREGIDO: Buscamos "nota1", "nota2", "nota3"
             n1 = float(self.ui.nota1.text())
             n2 = float(self.ui.nota2.text())
             n3 = float(self.ui.nota3.text())
             
             promedio = 0
 
-            # CORREGIDO: Buscamos "formula1", "formula2", "formula3"
             if self.ui.formula1.isChecked():
                 promedio = (n1*1 + n2*2 + n3*2) / 5
             elif self.ui.formula2.isChecked():
@@ -48,7 +43,6 @@ class MiApp(QMainWindow):
                 mensaje = f"Nota final: {promedio:.2f}. ¡Sigue esforzándote!"
                 self.ui.resultado.setStyleSheet("color: red; font-weight: bold;")
 
-            # CORREGIDO: Buscamos "resultado"
             self.ui.resultado.setText(mensaje)
 
         except ValueError:
@@ -57,7 +51,6 @@ class MiApp(QMainWindow):
 
     def predecir_nota(self):
         if not self.hay_formula_seleccionada():
-            # CORREGIDO: Buscamos "prediccion_1" (si así lo llamaste)
             self.ui.prediccion_1.setText("¡Elige formato!")
             self.ui.prediccion_1.setStyleSheet("color: purple; font-weight: bold;")
             return
