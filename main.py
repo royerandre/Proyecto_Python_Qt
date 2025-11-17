@@ -11,7 +11,7 @@ class MiApp(QMainWindow):
         self.ui.predecir.clicked.connect(self.predecir_nota)
 
     def hay_formula_seleccionada(self):
-        # Corregido con TUS nombres: formula1, formula2, formula3
+
         if self.ui.formula1.isChecked() or self.ui.formula2.isChecked() or self.ui.formula3.isChecked():
             return True
         return False
@@ -27,13 +27,11 @@ class MiApp(QMainWindow):
             n2 = float(self.ui.nota2.text())
             n3 = float(self.ui.nota3.text())
             
-            # --- ¡NUEVO PORTERO DE SEGURIDAD! ---
-            # Verificamos que las notas estén en el rango 0-20
+
             if not (0 <= n1 <= 20 and 0 <= n2 <= 20 and 0 <= n3 <= 20):
                 self.ui.resultado.setText("Error: Las notas solo pueden ser de 0 a 20")
                 self.ui.resultado.setStyleSheet("color: orange; font-weight: bold;")
-                return # <-- Detenemos el cálculo aquí
-            # -------------------------------------
+                return 
 
             promedio = 0
 
